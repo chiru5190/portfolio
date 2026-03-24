@@ -1,21 +1,129 @@
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useRef, useEffect, useState } from "react"
+import { Briefcase, Award, Code2, Lightbulb } from "lucide-react"
+import { fadeUp, fadeLeft, fadeRight, staggerContainer, staggerItem, viewportConfig, defaultTransition } from "../animations"
+
+const stats = [
+  { icon: <Code2 size={20} />, value: 5, suffix: "+", label: "Deployed Solutions" },
+  { icon: <Award size={20} />, value: 3, suffix: "+", label: "Certifications" },
+  { icon: <Briefcase size={20} />, value: 4, suffix: "", label: "Tech Domains" },
+  { icon: <Lightbulb size={20} />, value: 300, suffix: "+", label: "Problems Solved" },
+]
+
+function Counter({ value, suffix }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-50px" })
+
+  useEffect(() => {
+    if (!inView) return
+    let start = 0
+    const end = value
+    const duration = 1500
+    const step = Math.max(1, Math.floor(end / (duration / 16)))
+    const timer = setInterval(() => {
+      start += step
+      if (start >= end) {
+        setCount(end)
+        clearInterval(timer)
+      } else {
+        setCount(start)
+      }
+    }, 16)
+    return () => clearInterval(timer)
+  }, [inView, value])
+
+  return <span ref={ref}>{count}{suffix}</span>
+}
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-surface">
+    <section id="about" className="py-24 md:py-32 bg-surface relative overflow-hidden transition-colors">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="max-w-3xl">
-          <h2 className="section-title mb-6">About</h2>
-          <div className="space-y-4 text-body text-lg leading-relaxed">
-            <p>
-              I am a Computer Science student focused on building real-world machine learning systems and data-driven applications. My work involves designing ETL pipelines, training ML models, and developing interactive dashboards.
-            </p>
-            <p>
-              I am particularly interested in <span className="text-heading font-medium">NLP</span>, <span className="text-heading font-medium">data engineering</span>, and <span className="text-heading font-medium">scalable AI systems</span>.
-            </p>
-          </div>
-        </motion.div>
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+
+          {/* Left — Bio */}
+          <motion.div
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            transition={{ ...defaultTransition, duration: 0.6 }}
+          >
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              transition={defaultTransition}
+              className="section-title mb-6"
+            >
+              About Me
+            </motion.h2>
+            <div className="space-y-4 text-body text-base leading-relaxed">
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                transition={{ ...defaultTransition, delay: 0.1 }}
+              >
+                I build <span className="text-heading font-semibold">end-to-end machine learning systems</span> — from data ingestion and preprocessing to model training, evaluation, and deployment. My focus is on shipping solutions that work in production, not just in notebooks.
+              </motion.p>
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                transition={{ ...defaultTransition, delay: 0.2 }}
+              >
+                My core strengths lie in <span className="text-accent font-medium">NLP</span>,{" "}
+                <span className="text-accent font-medium">ETL pipeline design</span>, and{" "}
+                <span className="text-accent font-medium">ML model integration</span> with web applications using Flask, Streamlit, and React.
+              </motion.p>
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                transition={{ ...defaultTransition, delay: 0.3 }}
+              >
+                I write clean, documented code, design reproducible experiments, and prioritize measurable outcomes over feature count.
+              </motion.p>
+            </div>
+          </motion.div>
+
+          {/* Right — Stats Grid */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="grid grid-cols-2 gap-4"
+          >
+            {stats.map((stat) => (
+              <motion.div
+                key={stat.label}
+                variants={staggerItem}
+                whileHover={{ y: -4, scale: 1.03, transition: { duration: 0.2 } }}
+                className="card p-5 flex flex-col items-start cursor-default group"
+              >
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.4 }}
+                  className="p-2 rounded-lg bg-accent/10 text-accent mb-3 group-hover:bg-accent/15 transition-colors"
+                >
+                  {stat.icon}
+                </motion.div>
+                <div className="text-2xl md:text-3xl font-bold font-space text-heading mb-1">
+                  <Counter value={stat.value} suffix={stat.suffix} />
+                </div>
+                <p className="text-xs font-medium text-muted uppercase tracking-wider">{stat.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </div>
       </div>
     </section>
   )

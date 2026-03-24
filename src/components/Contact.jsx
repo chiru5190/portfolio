@@ -59,7 +59,7 @@ export default function Contact() {
           className="mb-16 text-center"
         >
           <h2 className="section-title mb-3">Get in Touch</h2>
-          <p className="section-subtitle max-w-lg mx-auto">Open to opportunities and collaborations in AI, ML, and software engineering.</p>
+          <p className="section-subtitle max-w-lg mx-auto">Open to internships and opportunities where I can build and improve real-world ML systems.</p>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 max-w-4xl mx-auto items-stretch">
@@ -74,8 +74,11 @@ export default function Contact() {
             className="flex-1 space-y-8 py-4"
           >
             <div>
-              <h3 className="text-xl font-bold text-heading mb-4 font-space">Let's build something.</h3>
-              <p className="text-body leading-relaxed">
+              <h3 className="text-xl font-bold text-heading mb-4 font-space md:text-2xl">
+                Looking to build or improve an AI/ML system?
+                Let’s collaborate and turn ideas into working solutions.
+              </h3>
+              <p className="text-body leading-relaxed hidden">
                 Whether you have a project idea, a question, or just want to connect — I'd love to hear from you.
               </p>
             </div>

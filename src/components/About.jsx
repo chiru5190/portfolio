@@ -68,7 +68,7 @@ export default function About() {
                 viewport={viewportConfig}
                 transition={{ ...defaultTransition, delay: 0.1 }}
               >
-                I build <span className="text-heading font-semibold">end-to-end machine learning systems</span> — from data ingestion and preprocessing to model training, evaluation, and deployment. My focus is on shipping solutions that work in production, not just in notebooks.
+                I build machine learning systems from data ingestion to deployment.
               </motion.p>
               <motion.p
                 variants={fadeUp}
@@ -77,9 +77,7 @@ export default function About() {
                 viewport={viewportConfig}
                 transition={{ ...defaultTransition, delay: 0.2 }}
               >
-                My core strengths lie in <span className="text-accent font-medium">NLP</span>,{" "}
-                <span className="text-accent font-medium">ETL pipeline design</span>, and{" "}
-                <span className="text-accent font-medium">ML model integration</span> with web applications using Flask, Streamlit, and React.
+                My work focuses on NLP pipelines, ETL workflows, and integrating ML models into web applications using tools like Flask and Streamlit.
               </motion.p>
               <motion.p
                 variants={fadeUp}
@@ -88,7 +86,17 @@ export default function About() {
                 viewport={viewportConfig}
                 transition={{ ...defaultTransition, delay: 0.3 }}
               >
-                I write clean, documented code, design reproducible experiments, and prioritize measurable outcomes over feature count.
+                I prioritize writing clean, maintainable code and designing systems that can move from experimentation to usable applications.
+              </motion.p>
+              <motion.p
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportConfig}
+                transition={{ ...defaultTransition, delay: 0.4 }}
+              >
+                My projects focus on solving practical problems like automating data workflows and building real-time prediction systems.
+I’m currently improving how I design, structure, and deploy ML systems to make them more reliable and usable.
               </motion.p>
             </div>
           </motion.div>

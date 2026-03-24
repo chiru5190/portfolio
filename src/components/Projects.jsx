@@ -8,27 +8,17 @@ const projects = [
   {
     title: "Stock Market Data Pipeline",
     subtitle: "ETL Engineering & SQL Analytics",
-    summary: "Automated ETL pipeline extracting daily stock data, transforming it via Pandas, and driving SQLite-based analytical reporting.",
+    summary: "Built an automated ETL pipeline to extract, process, and analyze stock market data.",
     image: "/projects/stock-pipeline.png",
-    overview: "Raw financial data from APIs requires reliable extraction, structured cleaning, and persistent storage before it can be used for downstream machine learning modeling or business intelligence.",
-    solution: "Built a modular Python-driven ETL pipeline. It extracts daily JSON data from a REST API, cleans and enforces schemas via Pandas, and loads it into an SQLite database for automated SQL analytics (including window functions and complex aggregations).",
+    overview: "Designed a data pipeline that fetches daily financial data from APIs, cleans and transforms it using Pandas, and stores it in SQLite for analysis.",
+    solution: "Implemented SQL-based analytics including moving averages and trend calculations for reporting.",
     features: [
-      "REST API Integration extracting real-time JSON financial data",
-      "Pandas transformation pipeline enforcing schemas and cleaning records",
-      "SQLite database integration utilizing efficient pandas.to_sql bulk loads",
-      "Automated SQL analytics module generating structured CSV reports",
+      "Automating data ingestion and transformation",
+      "Structuring raw JSON data into usable formats",
+      "Building reusable data processing workflows",
     ],
-    challenges: [
-      {
-        problem: "Nested JSON API responses required complex flattening and strict type enforcement",
-        fix: "Designed a modular Pandas transform layer to map JSON paths directly to structured, strongly-typed dataframe columns"
-      },
-      {
-        problem: "Calculating dynamic rolling metrics natively in local storage",
-        fix: "Implemented complex SQL window functions (AVG() OVER, RANK() OVER) directly in SQLite for high-performance aggregations"
-      }
-    ],
-    impact: "Eliminated manual data pulling, establishing a fully automated pipeline that generates 5 daily analytical reports (e.g., 7-day moving averages).",
+    challenges: [],
+    impact: "Eliminated manual data collection and enabled automated generation of daily analytical reports.",
     stack: ["Python", "Pandas", "SQLite", "SQL", "REST APIs"],
     github: "https://github.com/chiru5190/NSE-Stock-Data-Pipeline",
     live: "https://nsestockdatapipeline.streamlit.app/",
@@ -36,27 +26,17 @@ const projects = [
   {
     title: "Sentiment Analysis Engine",
     subtitle: "ML-Based Text Classification",
-    summary: "Classifies real-time sentiment from large-scale text data with 87% accuracy across three classes.",
+    summary: "Developed a text classification system to analyze sentiment from large-scale text data.",
     image: "/projects/sentiment-analysis.png",
-    overview: "Manual sentiment analysis doesn't scale. Businesses processing thousands of customer reviews need automated, accurate classification to extract actionable insights fast.",
-    solution: "End-to-end ML pipeline using TF-IDF vectorization and supervised learning with real-time prediction through a Streamlit interface. Compared Naive Bayes, SVM, and Logistic Regression to select the best-performing model.",
+    overview: "Built an NLP pipeline using TF-IDF vectorization and evaluated multiple models including Naive Bayes, SVM, and Logistic Regression.",
+    solution: "Handled class imbalance using SMOTE and improved model performance through preprocessing and feature tuning.",
     features: [
-      "Multi-step NLP preprocessing (tokenization, stopword removal, lemmatization)",
-      "Real-time single & batch prediction via Streamlit dashboard",
-      "Model comparison dashboard across 3 classifiers",
-      "SMOTE oversampling for class imbalance correction",
+      "Text preprocessing (tokenization, stopword removal, normalization)",
+      "Model comparison and selection",
+      "Improving performance on imbalanced data",
     ],
-    challenges: [
-      {
-        problem: "Class imbalance skewed predictions — 72% of training data was positive sentiment",
-        fix: "Applied SMOTE oversampling + stratified cross-validation, improving minority class recall by 23%"
-      },
-      {
-        problem: "Raw text noise (URLs, emojis, special characters) degraded accuracy by ~15%",
-        fix: "Built regex-based cleaning pipeline with custom tokenizer, recovering 12% accuracy"
-      }
-    ],
-    impact: "87% classification accuracy across 3 sentiment classes. Processes 1000+ text records in under 3 seconds.",
+    challenges: [],
+    impact: "Achieved 87% classification accuracy and enabled real-time prediction through a Streamlit interface.",
     stack: ["Python", "Scikit-learn", "Pandas", "Streamlit", "NLTK"],
     github: "https://github.com/chiru5190/sentiment-analysis-app",
     live: "https://sentimentanalysis-model.streamlit.app/",
@@ -64,27 +44,17 @@ const projects = [
   {
     title: "Email Classifier",
     subtitle: "Neural Network Email Categorization",
-    summary: "Reduces manual email sorting effort by 85% using TensorFlow-based real-time classification.",
+    summary: "Built a neural network-based email classification system to categorize emails automatically.",
     image: "/projects/email-classifier.png",
-    overview: "Organizations waste hours manually sorting email traffic. Unstructured text, variable lengths, and diverse categories make rule-based approaches fragile and unmaintainable.",
-    solution: "TensorFlow neural network served through a Flask REST API with a responsive web frontend. Dynamic padding handles variable email lengths, and TF Lite conversion ensures fast inference.",
+    overview: "Designed a TensorFlow model integrated with a Flask API for real-time predictions, and a frontend interface for interaction.",
+    solution: "Handled variable-length input using dynamic padding and optimized inference performance using TensorFlow Lite.",
     features: [
-      "Flask REST API for real-time inference (<200ms response)",
-      "Responsive web frontend with prediction confidence charts",
-      "TF Lite model serving — 60% faster inference than base TensorFlow",
-      "Automated retraining pipeline for new email categories",
+      "Neural network-based text classification",
+      "API-based model deployment",
+      "Performance optimization for faster inference",
     ],
-    challenges: [
-      {
-        problem: "Base TensorFlow model took 800ms per prediction — too slow for real-time API",
-        fix: "Applied model quantization + TF Lite conversion, cutting inference to 320ms (60% reduction)"
-      },
-      {
-        problem: "Email text varied from 10 to 5000+ tokens, breaking fixed-input architecture",
-        fix: "Implemented dynamic padding with configurable max sequence length and attention masking"
-      }
-    ],
-    impact: "85% reduction in manual sorting effort. Sub-second inference with 91% categorization accuracy.",
+    challenges: [],
+    impact: "Reduced manual email sorting effort and achieved high accuracy with fast response times.",
     stack: ["TensorFlow", "Flask", "JavaScript", "Chart.js"],
     github: "https://github.com/chiru5190/Email-Classifier",
     live: null,
@@ -201,6 +171,52 @@ export default function Projects() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* What I'm Currently Working On - Standalone Section */}
+        <motion.div
+           variants={fadeUp}
+           initial="hidden"
+           whileInView="visible"
+           viewport={viewportConfig}
+           className="mt-28 md:mt-36"
+        >
+          <div className="relative rounded-3xl overflow-hidden glass border border-accent/20 p-8 md:p-14">
+            {/* Background effects */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 blur-[80px] rounded-full pointer-events-none" />
+            
+            <div className="relative z-10 grid lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16 items-center">
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold font-space text-heading mb-4 leading-tight">What I'm Currently Working On</h3>
+                <p className="text-body leading-relaxed mb-6 lg:mb-0">
+                  Continuous development is key. Here is where I'm actively focusing my engineering efforts right now.
+                </p>
+              </div>
+              
+              <ul className="space-y-4 md:space-y-5">
+                {[
+                  "Building LLM-based applications for automation and problem-solving",
+                  "Improving performance and structure of ML pipelines through better preprocessing and evaluation",
+                  "Learning deployment patterns for scalable ML systems"
+                ].map((item, i) => (
+                  <motion.li 
+                    key={i}
+                    initial={{ opacity: 0, x: -15 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={viewportConfig}
+                    transition={{ delay: 0.1 + i * 0.1 }}
+                    className="flex items-start gap-4 group"
+                  >
+                    <div className="p-2 rounded-xl bg-surface border border-border text-accent group-hover:border-accent/40 group-hover:bg-accent/10 transition-all shrink-0 mt-0.5 shadow-sm">
+                      <TrendingUp size={18} />
+                    </div>
+                    <p className="text-heading text-base md:text-[17px] font-medium leading-relaxed">{item}</p>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </motion.div>
       </div>
 

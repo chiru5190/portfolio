@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react"
 
-const techTags = ["Python", "Machine Learning", "NLP", "AWS", "React"]
+const techTags = ["Python", "Machine Learning", "NLP"]
 
 const socialLinks = [
   { icon: <Github size={18} />, href: "https://github.com/chiru5190", label: "GitHub" },
@@ -37,116 +37,106 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-surface/50 backdrop-blur-sm mb-8"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 backdrop-blur-sm mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-xs font-medium text-muted">Available for AI/ML roles</span>
+              <span className="text-xs font-semibold text-accent tracking-wide">Building real-world ML applications</span>
             </motion.div>
 
-            {/* Headline — word-by-word reveal */}
-            <h1 className="font-space text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight leading-[1.12] mb-5 text-heading">
-              {["Building", "intelligent"].map((word, i) => (
-                <motion.span
-                  key={word}
-                  initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
-                  className="inline-block mr-[0.3em]"
-                >
-                  {word}
-                </motion.span>
-              ))}
-              <motion.span
-                initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.5, delay: 0.35 }}
-                className="inline-block gradient-text mr-[0.3em]"
-              >
-                AI systems
-              </motion.span>
-              {["that", "deliver", "real-world", "impact."].map((word, i) => (
-                <motion.span
-                  key={word}
-                  initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{ duration: 0.5, delay: 0.45 + i * 0.08 }}
-                  className="inline-block mr-[0.3em]"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </h1>
+            {/* Name Greeting */}
+            <motion.div
+              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-5"
+            >
+              <p className="text-base md:text-lg text-muted font-medium mb-1 tracking-wide">
+                Hi, I'm
+              </p>
+              <h1 className="font-space text-[3.2rem] md:text-[4rem] lg:text-[4.5rem] font-extrabold tracking-tight leading-[1.05]">
+                <span className="gradient-text">Gedela Chiranjeevi</span>
+              </h1>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.p
+              initial={{ opacity: 0, y: 15, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="text-lg md:text-xl lg:text-[1.35rem] font-medium leading-[1.5] mb-3 text-heading/90 max-w-lg"
+            >
+              Built and deployed ML models (NLP & classification) with Flask APIs, handling real-time predictions and automated data pipelines.
+            </motion.p>
 
             {/* Subtext */}
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="text-body text-base md:text-lg leading-relaxed max-w-lg mb-8"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-muted text-sm md:text-base leading-relaxed max-w-md mb-8"
             >
-              Focused on NLP, data pipelines, and production-ready machine learning applications.
+              Focused on making models usable beyond notebooks through APIs and real-world workflows.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="flex flex-wrap gap-3 mb-10"
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex flex-wrap gap-3 mb-8"
             >
               <a href="#projects" className="btn-primary btn-glow flex items-center gap-2 group">
                 View Projects <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
               </a>
-              <a href="/resume.pdf" download className="btn-outline flex items-center gap-2">
+              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="btn-outline flex items-center gap-2">
                 <Download size={16} /> Resume
               </a>
             </motion.div>
 
-            {/* Social Icons */}
+            {/* Social Icons + Tech Stack inline */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-              className="flex items-center gap-3 mb-10"
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="flex items-center gap-5"
             >
-              {socialLinks.map((s, i) => (
-                <motion.a
-                  key={s.label}
-                  href={s.href}
-                  target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel={s.href.startsWith("mailto") ? undefined : "noreferrer"}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.95 + i * 0.08 }}
-                  whileHover={{ y: -3, scale: 1.1 }}
-                  className="p-2.5 rounded-xl border border-border text-muted hover:text-accent hover:border-accent/30 hover:shadow-[0_0_16px_-4px_rgba(6,182,212,0.25)] transition-all duration-300"
-                  aria-label={s.label}
-                >
-                  {s.icon}
-                </motion.a>
-              ))}
-            </motion.div>
+              {/* Social Icons */}
+              <div className="flex items-center gap-2.5">
+                {socialLinks.map((s, i) => (
+                  <motion.a
+                    key={s.label}
+                    href={s.href}
+                    target={s.href.startsWith("mailto") ? undefined : "_blank"}
+                    rel={s.href.startsWith("mailto") ? undefined : "noreferrer"}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.85 + i * 0.08 }}
+                    whileHover={{ y: -3, scale: 1.1 }}
+                    className="p-2.5 rounded-xl border border-border text-muted hover:text-accent hover:border-accent/30 hover:shadow-[0_0_16px_-4px_rgba(6,182,212,0.25)] transition-all duration-300"
+                    aria-label={s.label}
+                  >
+                    {s.icon}
+                  </motion.a>
+                ))}
+              </div>
 
-            {/* Tech Stack Tags */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.1 }}
-              className="flex items-center gap-3 flex-wrap"
-            >
-              <span className="text-[10px] font-bold text-muted uppercase tracking-widest font-space">Tech Stack:</span>
-              {techTags.map((tag, i) => (
-                <motion.span
-                  key={tag}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: 1.15 + i * 0.06 }}
-                  className="flex items-center gap-2 text-xs text-muted/80 font-medium"
-                >
-                  {i > 0 && <span className="text-border">•</span>}
-                  {tag}
-                </motion.span>
-              ))}
+              {/* Divider */}
+              <div className="w-px h-8 bg-border" />
+
+              {/* Tech Stack Tags */}
+              <div className="flex items-center gap-2.5 flex-wrap">
+                {techTags.map((tag, i) => (
+                  <motion.span
+                    key={tag}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 1 + i * 0.06 }}
+                    className="text-[11px] font-semibold text-muted/70 bg-surface border border-border rounded-lg px-2.5 py-1 tracking-wide uppercase hover:border-accent/30 hover:text-accent/80 transition-colors"
+                  >
+                    {tag}
+                  </motion.span>
+                ))}
+              </div>
             </motion.div>
           </div>
 
@@ -177,7 +167,7 @@ export default function Hero() {
                   </div>
                   <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
                     <div className="glass px-4 py-1.5 rounded-full">
-                      <span className="text-xs font-semibold text-accent font-space tracking-wide">AI/ML Engineer</span>
+                      <span className="text-xs font-semibold text-accent font-space tracking-wide">AI/ML Developer</span>
                     </div>
                   </div>
                 </div>

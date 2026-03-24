@@ -4,7 +4,7 @@ import { Award, Calendar, ExternalLink, Cloud, Code, Database, FileBadge, Shield
 import Modal from "./ui/Modal"
 import { fadeUp, staggerContainer, staggerItem, viewportConfig, defaultTransition } from "../animations"
 
-const certs = [
+const mainCerts = [
   {
     title: "Machine Learning Specialization",
     issuer: "DeepLearning.AI / Stanford Online",
@@ -23,12 +23,14 @@ const certs = [
     image: "/certs/oracle-genai.png",
     verifyUrl: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=7BF17C01C7354D23451E042654406C3FE520EDB29E19FC61151616228855AF51",
   },
+]
+
+const otherCerts = [
   {
     title: "JavaScript Essentials",
     issuer: "NxtWave",
     issuerIcon: <Code size={14} />,
     date: "September 2024",
-    highlight: false,
     image: "/certs/javascript.png",
     verifyUrl: "https://certificates.ccbp.in/academy/javascript-essentials?id=NNYXBLSTRM",
   },
@@ -37,7 +39,6 @@ const certs = [
     issuer: "NxtWave",
     issuerIcon: <Code size={14} />,
     date: "July 2024",
-    highlight: false,
     image: "/certs/python.png",
     verifyUrl: "https://certificates.ccbp.in/academy/programming-foundations-with-python?id=BMLHFUJUXK",
   },
@@ -46,7 +47,6 @@ const certs = [
     issuer: "NxtWave",
     issuerIcon: <Database size={14} />,
     date: "May 2024",
-    highlight: false,
     image: "/certs/sql.png",
     verifyUrl: "https://certificates.ccbp.in/academy/introduction-to-databases?id=EFPUZJFOOZ",
   },
@@ -55,7 +55,6 @@ const certs = [
     issuer: "Edyoda",
     issuerIcon: <Cloud size={14} />,
     date: "April 2024",
-    highlight: false,
     image: "/certs/aws-edyoda.png",
     verifyUrl: "https://classroom.edyoda.com/public-certificate/chiranjeevig141149/AWSMD160324",
   },
@@ -97,7 +96,7 @@ export default function Certificates() {
           viewport={viewportConfig}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-          {certs.map((c) => (
+          {mainCerts.map((c) => (
             <motion.div
               key={c.title}
               variants={staggerItem}
@@ -157,6 +156,18 @@ export default function Certificates() {
               </div>
             </motion.div>
           ))}
+
+          {/* View All Card */}
+          <motion.div
+            variants={staggerItem}
+            whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.3 } }}
+            onClick={() => setSelected('all')}
+            className="card flex flex-col h-full group overflow-hidden cursor-pointer justify-center items-center border-dashed border-2 border-border hover:border-accent/40 bg-surface/30 min-h-[220px]"
+          >
+            <FileBadge size={36} className="text-muted mb-4 group-hover:text-accent transition-colors opacity-50 group-hover:opacity-100" />
+            <h3 className="text-lg font-bold text-heading group-hover:text-accent transition-colors text-center px-4">Additional Certifications</h3>
+            <p className="text-xs font-medium text-muted mt-2 tracking-wide text-center px-4 leading-relaxed">(Foundational courses and coursework)</p>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -164,9 +175,48 @@ export default function Certificates() {
       <AnimatePresence>
         {selected && (
           <Modal isOpen={!!selected} onClose={() => setSelected(null)}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+            {selected === 'all' ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={defaultTransition}
+                className="space-y-6"
+              >
+                <div className="border-b border-border pb-4 mb-2">
+                  <h2 className="text-xl md:text-2xl font-bold text-heading font-space">Other Certifications</h2>
+                  <p className="text-muted text-sm mt-1">Foundational credentials and course completions.</p>
+                </div>
+                
+                <div className="grid sm:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                  {otherCerts.map(c => (
+                    <div key={c.title} className="bg-surface-alt border border-border rounded-xl p-4 flex flex-col items-center text-center group">
+                      <div className="w-full h-32 bg-surface rounded-lg mb-4 overflow-hidden border border-border">
+                        <img 
+                          src={c.image} 
+                          alt={c.title} 
+                          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-105" 
+                           onError={(e) => {
+                             e.currentTarget.style.display = 'none'
+                           }}
+                        />
+                      </div>
+                      <h4 className="text-sm font-bold text-heading mb-1.5 leading-tight">{c.title}</h4>
+                      <div className="flex items-center gap-1.5 text-[11px] text-muted font-medium mb-4">
+                        <span className="text-accent/70">{c.issuerIcon}</span>
+                        <span>{c.issuer}</span>
+                      </div>
+                      <a href={c.verifyUrl} target="_blank" rel="noreferrer" className="btn-outline text-xs px-4 py-1.5 mt-auto flex items-center gap-1.5 w-full justify-center group-hover:bg-surface transition-colors">
+                        <ShieldCheck size={12} /> Verify Credential
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={defaultTransition}
               className="space-y-5"
@@ -225,6 +275,7 @@ export default function Certificates() {
                 )}
               </div>
             </motion.div>
+            )}
           </Modal>
         )}
       </AnimatePresence>

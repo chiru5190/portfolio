@@ -4,9 +4,9 @@ import { Briefcase, Award, Code2, Lightbulb } from "lucide-react"
 import { fadeUp, fadeLeft, fadeRight, staggerContainer, staggerItem, viewportConfig, defaultTransition } from "../animations"
 
 const stats = [
-  { icon: <Code2 size={20} />, value: 5, suffix: "+", label: "Deployed Solutions" },
-  { icon: <Award size={20} />, value: 3, suffix: "+", label: "Certifications" },
-  { icon: <Briefcase size={20} />, value: 4, suffix: "", label: "Tech Domains" },
+  { icon: <Code2 size={20} />, value: 3, suffix: "+", label: "Deployed Solutions" },
+  { icon: <Award size={20} />, value: 5, suffix: "+", label: "Certifications" },
+  { icon: <Briefcase size={20} />, value: 3, suffix: "", label: "Tech Domains" },
   { icon: <Lightbulb size={20} />, value: 300, suffix: "+", label: "Problems Solved" },
 ]
 
